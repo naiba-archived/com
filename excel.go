@@ -12,11 +12,10 @@ import (
 )
 
 //创建带标题的表格
-func NewTitledExcel(item interface{}) *excelize.File {
+func NewTitledExcel(mStrut interface{}) *excelize.File {
 	excel := excelize.NewFile()
-	excel.SetSheetName("Sheet1", "最终数据")
-	keys := reflect.TypeOf(item)
-	values := reflect.ValueOf(item)
+	keys := reflect.TypeOf(mStrut)
+	values := reflect.ValueOf(mStrut)
 	for i := 0; i < keys.NumField(); i++ {
 		var name = keys.Field(i).Name
 		if values.Field(i).Kind() == reflect.Slice {
