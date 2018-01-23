@@ -4,8 +4,8 @@ import (
 	"testing"
 )
 
-func TestMoney_Convert(t *testing.T) {
-	m := NewMoney()
+func TestFXRate_Convert(t *testing.T) {
+	m := GetRate()
 	if m == nil {
 		t.Error("汇率接口请求失败")
 	}

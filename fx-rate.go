@@ -6,33 +6,33 @@ import (
 	"encoding/json"
 )
 
-type Money struct {
+type FXRate struct {
 	Base  string
 	Date  string
 	Rates map[string]float64
 }
 
-var moneyInstance *Money
+var rateInstance *FXRate
 
-func NewMoney() *Money {
-	if moneyInstance == nil {
+func GetRate() *FXRate {
+	if rateInstance == nil {
 		req := gorequest.New()
 		_, body, err := req.Get("https://api.fixer.io/latest").End()
 		if err != nil {
-			log.Println("NewMoney", err)
+			log.Println("NewRate", err)
 			return nil
 		}
-		var money Money
-		errs := json.Unmarshal([]byte(body), &money)
+		var rate FXRate
+		errs := json.Unmarshal([]byte(body), &rate)
 		if errs != nil {
-			log.Println("NewMoney", errs)
+			log.Println("NewRate", errs)
 			return nil
 		}
-		moneyInstance = &money
+		rateInstance = &rate
 	}
-	return moneyInstance
+	return rateInstance
 }
-func (m *Money) Convert(src string, dist string, num float64) float64 {
+func (m *FXRate) Convert(src string, dist string, num float64) float64 {
 	rate, has := m.Rates[dist]
 	rate1, has1 := m.Rates[src]
 	if has && (has1 || src == m.Base) {
@@ -42,7 +42,7 @@ func (m *Money) Convert(src string, dist string, num float64) float64 {
 			return num / rate1 * rate
 		}
 	} else {
-		log.Println("Money.Convert", "原始或目标汇率不支持")
+		log.Println("rate.Convert", "原始或目标汇率不支持")
 	}
 	return num
 }
