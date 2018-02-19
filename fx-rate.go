@@ -32,6 +32,7 @@ func GetRate() *FXRate {
 	}
 	return rateInstance
 }
+
 func (m *FXRate) Convert(src string, dist string, num float64) float64 {
 	rate, has := m.Rates[dist]
 	rate1, has1 := m.Rates[src]
