@@ -12,6 +12,7 @@ import (
 )
 
 func FakeUserAgent() string {
+	rand.Seed(time.Now().Unix())
 	ua := []string{
 		"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/603.3.8 (KHTML, like Gecko) Version/10.1.2 Safari/603.3.8",
 		"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36",
@@ -25,6 +26,7 @@ func FakeUserAgent() string {
 }
 
 func FakeIP() string {
+	rand.Seed(time.Now().Unix())
 	return strconv.Itoa(rand.Intn(254)+1) + "." + strconv.Itoa(rand.Intn(254)+1) + "." + strconv.Itoa(rand.Intn(254)+1) + "." + strconv.Itoa(rand.Intn(254)+1)
 }
 
@@ -38,6 +40,7 @@ const (
 var src = rand.NewSource(time.Now().UnixNano())
 
 func RandString(n int) string {
+	rand.Seed(time.Now().Unix())
 	b := make([]byte, n)
 	// A src.Int63() generates 63 random bits, enough for letterIdxMax characters!
 	for i, cache, remain := n-1, src.Int63(), letterIdxMax; i >= 0; {
