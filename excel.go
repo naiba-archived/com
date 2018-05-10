@@ -11,7 +11,7 @@ import (
 	"strconv"
 )
 
-//创建带标题的表格
+//NewTitledExcel 创建带标题的表格
 func NewTitledExcel(mStrut interface{}) *excelize.File {
 	excel := excelize.NewFile()
 	keys := reflect.TypeOf(mStrut)
@@ -26,7 +26,7 @@ func NewTitledExcel(mStrut interface{}) *excelize.File {
 	return excel
 }
 
-//获取列名，从0开始获取
+//GetColumnName 获取列名，从0开始获取
 func GetColumnName(index int) (columnName string) {
 	//A  B  C  AA  AB  AC  BA  BB  BC
 	//0  1  2  3   4   5   6   7   8
@@ -43,7 +43,7 @@ func GetColumnName(index int) (columnName string) {
 	return
 }
 
-//将结构体写入表格
+//WriteStrutToExcel 将结构体写入表格
 func WriteStrutToExcel(xlsx *excelize.File, strucd interface{}, line int) {
 	keys := reflect.TypeOf(strucd)
 	values := reflect.ValueOf(strucd)

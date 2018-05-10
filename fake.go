@@ -6,12 +6,13 @@
 package com
 
 import (
-	"strconv"
 	"math/rand"
+	"strconv"
 	"time"
 )
 
-func FakeUserAgent() string {
+//RandomUserAgent get a random user-agent
+func RandomUserAgent() string {
 	rand.Seed(time.Now().Unix())
 	ua := []string{
 		"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/603.3.8 (KHTML, like Gecko) Version/10.1.2 Safari/603.3.8",
@@ -25,7 +26,8 @@ func FakeUserAgent() string {
 	return ua[rand.Intn(len(ua))]
 }
 
-func FakeIP() string {
+//RandomIP get a random ip address
+func RandomIP() string {
 	rand.Seed(time.Now().Unix())
 	return strconv.Itoa(rand.Intn(254)+1) + "." + strconv.Itoa(rand.Intn(254)+1) + "." + strconv.Itoa(rand.Intn(254)+1) + "." + strconv.Itoa(rand.Intn(254)+1)
 }
@@ -39,7 +41,8 @@ const (
 
 var src = rand.NewSource(time.Now().UnixNano())
 
-func RandString(n int) string {
+//RandomString get a random string
+func RandomString(n int) string {
 	rand.Seed(time.Now().Unix())
 	b := make([]byte, n)
 	// A src.Int63() generates 63 random bits, enough for letterIdxMax characters!

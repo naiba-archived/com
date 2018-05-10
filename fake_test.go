@@ -6,19 +6,19 @@
 package com
 
 import (
-	"testing"
 	"regexp"
+	"testing"
 )
 
 func TestFakeUserAgent(t *testing.T) {
-	if len(FakeUserAgent()) == 0 {
-		t.Error("FakeUserAgent 获取UA不能为空")
+	if len(RandomUserAgent()) == 0 {
+		t.Error("RandomUserAgent 获取UA不能为空")
 	}
 }
 
 func TestFakeIP(t *testing.T) {
-	pass, err := regexp.Match(`^((?:(?:25[0-5]|2[0-4]\d|(?:1\d{2}|[1-9]?\d))\.){3}(?:25[0-5]|2[0-4]\d|(?:1\d{2}|[1-9]?\d)))$`, []byte(FakeIP()))
+	pass, err := regexp.Match(`^((?:(?:25[0-5]|2[0-4]\d|(?:1\d{2}|[1-9]?\d))\.){3}(?:25[0-5]|2[0-4]\d|(?:1\d{2}|[1-9]?\d)))$`, []byte(RandomIP()))
 	if !pass || err != nil {
-		t.Error("FakeIP IP生成错误", err)
+		t.Error("RandomIP IP生成错误", err)
 	}
 }
